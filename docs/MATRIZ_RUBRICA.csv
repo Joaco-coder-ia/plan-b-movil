@@ -3,7 +3,7 @@ EP2,Interfaz y navegación,Cuatro pestañas y formularios,Prueba manual Android
 EP2,Validaciones desacopladas,Reglas y PlanBViewModel,ReglasTest y errores por campo
 EP2,Animaciones,Crossfade y AnimatedVisibility,Prueba manual Android
 EP2,Persistencia local,Room favoritos,Modo favoritos sin conexión
-EP2,Recursos nativos,Cámara galería ubicación,Prueba manual de permisos y resultados
+EP2,Recursos nativos,Cámara galería ubicación,Implementado y compilado; ensayo completo en teléfono pendiente
 EP4,Microservicios Spring Boot,Lugares y planes con H2 en archivo,Pruebas CRUD y ejecución de JAR
 EP4,CRUD remoto,Retrofit y formularios,RepositoryTest y ciclo completo
 EP4,API externa,Open-Meteo clima,WeatherApi y resultado visual

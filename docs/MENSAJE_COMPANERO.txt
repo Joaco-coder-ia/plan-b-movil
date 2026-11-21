@@ -1,0 +1,10 @@
+Te comparto PLAN B, la nueva propuesta para organizar actividades según el tiempo libre, presupuesto y clima.
+
+La entrega incluye gestión de lugares y planes, validaciones por campo, favoritos guardados en el teléfono, consulta de clima y dos servicios REST. Quedaron 28 pruebas automatizadas aprobadas, cobertura del 95,04 % del conjunto de lógica medido y un APK firmado probado en emulador.
+
+Para prepararlo se revisaron las pautas EP2 a EP5 y los proyectos PRACTIKA como referencia. Se organizaron las pantallas con ViewModel y Repository, y el backend con Controller, Service y Repository. La guía explica el recorrido de los datos y cómo practicar modificaciones pequeñas.
+
+Repositorio: https://github.com/Joaco-coder-ia/plan-b-movil
+Hay un ZIP completo y otro con comentarios encima de las líneas Kotlin y Java para estudiarlo. La entrega completa incluye una llave de firma académica: compártela solo por el canal privado de entrega, no en un repositorio público.
+
+Todavía falta confirmar con el profesor el cambio de tema y la modalidad individual, trasladar la planificación a Trello y grabar/subir el video. Cámara, galería y GPS deben ensayarse en el teléfono que se usará para presentar.
