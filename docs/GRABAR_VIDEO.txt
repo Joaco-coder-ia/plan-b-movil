@@ -1,0 +1,21 @@
+PLAN B — PREPARAR Y GRABAR
+
+1. Inicia los dos servicios con scripts/iniciar-servicios.ps1. Necesitas Java 21.
+2. Ejecuta scripts/datos-demo.ps1 si no tienes lugares.
+3. Abre android/ en Android Studio y ejecuta la app, o instala apk/PLAN-B-1.0.apk.
+4. Emulador: Perfil > servidor 10.0.2.2. Teléfono: IP local del computador y misma red.
+5. Ensaya antes de grabar. No muestres la carpeta private ni signing.properties.
+
+RECORRIDO BREVE (unos 5 minutos; adapta a lo exigido por el docente)
+0:00 Presenta el problema: aprovechar un rato libre con poco presupuesto.
+0:30 Descubrir: cambia minutos y presupuesto, explica el clima y las reglas.
+1:15 Lugares: crea uno, provoca un error de validación, corrige y guarda; edita y elimina ese ejemplo.
+2:15 Guarda otro lugar como favorito y activa el filtro. Explica la copia local en Room.
+2:45 Crea un plan, edítalo, márcalo realizado, valora y muestra la confirmación al borrar.
+3:30 Perfil: nombre, foto y ubicación. Prueba estos permisos en tu dispositivo antes de grabar.
+4:00 Muestra brevemente ViewModel, Repository, Retrofit y un Controller del backend.
+4:30 Muestra pruebas, cobertura y APK firmado. Explica qué incluye y excluye la cobertura.
+5:00 Cierra mostrando el repositorio y el alcance de laboratorio.
+
+Para defender cambios de código, consulta DEFENSA.md y GUIA_CODIGO.md.
+No hace falta dejar errores deliberados: puedes practicar cambiando validaciones o filtros.

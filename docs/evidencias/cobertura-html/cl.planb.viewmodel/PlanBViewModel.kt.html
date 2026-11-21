@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlanBViewModel.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">cl.planb.viewmodel</a> &gt; <span class="el_source">PlanBViewModel.kt</span></div><h1>PlanBViewModel.kt</h1><pre class="source lang-java linenums">package cl.planb.viewmodel
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import cl.planb.data.Repository
+import cl.planb.logic.Reglas
+import cl.planb.model.*
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+
+<span class="fc" id="L13">class PlanBViewModel(private val repository: Repository) : ViewModel() {</span>
+<span class="fc" id="L14">    private val _state = MutableStateFlow(UiState())</span>
+<span class="fc" id="L15">    val state = _state.asStateFlow()</span>
+
+    private fun operar(accion: suspend () -&gt; Unit) {
+<span class="fc bfc" id="L18" title="All 2 branches covered.">        if (_state.value.cargando) return</span>
+<span class="fc" id="L19">        _state.value = _state.value.copy(cargando = true, mensaje = null)</span>
+<span class="fc" id="L20">        viewModelScope.launch {</span>
+<span class="fc" id="L21">            try {</span>
+<span class="fc" id="L22">                accion()</span>
+<span class="nc" id="L23">            } catch (error: CancellationException) {</span>
+<span class="nc" id="L24">                throw error</span>
+<span class="fc" id="L25">            } catch (error: Exception) {</span>
+<span class="fc" id="L26">                _state.value =</span>
+<span class="fc" id="L27">                    _state.value.copy(</span>
+                        mensaje =
+<span class="fc" id="L29">                            &quot;No se pudo completar. Revisa la conexión con los servicios y vuelve a intentar.&quot;,</span>
+                    )
+            } finally {
+<span class="fc" id="L32">                _state.value = _state.value.copy(cargando = false)</span>
+            }
+<span class="fc" id="L34">        }</span>
+<span class="fc" id="L35">    }</span>
+
+<span class="fc" id="L37">    private suspend fun cargarDatos() {</span>
+<span class="fc" id="L38">        val lugares = repository.lugares()</span>
+<span class="fc" id="L39">        val planes = repository.planes()</span>
+<span class="fc" id="L40">        _state.value = _state.value.copy(lugares = lugares, planes = planes)</span>
+<span class="fc" id="L41">    }</span>
+
+<span class="fc" id="L43">    fun cargar() = operar { cargarDatos() }</span>
+
+    fun limpiarErrores() {
+<span class="fc" id="L46">        _state.value = _state.value.copy(errores = emptyMap(), mensaje = null)</span>
+<span class="fc" id="L47">    }</span>
+
+<span class="pc" id="L49">    fun guardar(lugar: Lugar, onSuccess: () -&gt; Unit = {}) {</span>
+<span class="fc" id="L50">        val errores = Reglas.lugar(lugar)</span>
+<span class="fc" id="L51">        _state.value = _state.value.copy(errores = errores)</span>
+<span class="fc bfc" id="L52" title="All 4 branches covered.">        if (errores.isNotEmpty()) return</span>
+<span class="fc" id="L53">        operar {</span>
+<span class="fc" id="L54">            repository.guardar(lugar)</span>
+<span class="fc" id="L55">            _state.value = _state.value.copy(mensaje = &quot;Lugar guardado&quot;)</span>
+<span class="fc" id="L56">            onSuccess()</span>
+<span class="fc" id="L57">            cargarDatos()</span>
+<span class="fc" id="L58">        }</span>
+<span class="fc" id="L59">    }</span>
+
+<span class="pc" id="L61">    fun guardar(plan: Plan, onSuccess: () -&gt; Unit = {}) {</span>
+<span class="fc" id="L62">        val errores = Reglas.plan(plan)</span>
+<span class="fc" id="L63">        _state.value = _state.value.copy(errores = errores)</span>
+<span class="fc bfc" id="L64" title="All 4 branches covered.">        if (errores.isNotEmpty()) return</span>
+<span class="fc" id="L65">        operar {</span>
+<span class="fc" id="L66">            repository.guardar(plan)</span>
+<span class="fc" id="L67">            _state.value = _state.value.copy(mensaje = &quot;Plan guardado&quot;)</span>
+<span class="fc" id="L68">            onSuccess()</span>
+<span class="fc" id="L69">            cargarDatos()</span>
+<span class="fc" id="L70">        }</span>
+<span class="fc" id="L71">    }</span>
+
+<span class="fc" id="L73">    fun borrarLugar(id: Long) = operar {</span>
+<span class="fc" id="L74">        repository.borrarLugar(id)</span>
+<span class="fc" id="L75">        cargarDatos()</span>
+<span class="fc" id="L76">        _state.value =</span>
+<span class="fc" id="L77">            _state.value.copy(</span>
+<span class="fc" id="L78">                mensaje = &quot;Lugar eliminado; tus planes anteriores conservan su nombre&quot;,</span>
+            )
+<span class="fc" id="L80">    }</span>
+
+<span class="fc" id="L82">    fun borrarPlan(id: Long) = operar {</span>
+<span class="fc" id="L83">        repository.borrarPlan(id)</span>
+<span class="fc" id="L84">        cargarDatos()</span>
+<span class="fc" id="L85">        _state.value = _state.value.copy(mensaje = &quot;Plan eliminado&quot;)</span>
+<span class="fc" id="L86">    }</span>
+
+    fun consultarClima(lat: Double, lon: Double) {
+<span class="fc" id="L89">        viewModelScope.launch {</span>
+<span class="fc" id="L90">            _state.value = _state.value.copy(clima = null, errorClima = null)</span>
+<span class="fc" id="L91">            try {</span>
+<span class="fc" id="L92">                _state.value = _state.value.copy(clima = repository.clima(lat, lon))</span>
+<span class="nc" id="L93">            } catch (error: CancellationException) {</span>
+<span class="nc" id="L94">                throw error</span>
+<span class="fc" id="L95">            } catch (error: Exception) {</span>
+<span class="fc" id="L96">                _state.value =</span>
+<span class="fc" id="L97">                    _state.value.copy(</span>
+                        errorClima =
+<span class="fc" id="L99">                            &quot;Clima no disponible. Se mostrarán solo opciones bajo techo hasta reintentar.&quot;,</span>
+                    )
+            }
+<span class="fc" id="L102">        }</span>
+<span class="fc" id="L103">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

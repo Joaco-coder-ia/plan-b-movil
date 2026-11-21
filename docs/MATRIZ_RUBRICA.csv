@@ -1,0 +1,14 @@
+Evaluacion,Requisito,Implementacion,Evidencia
+EP2,Interfaz y navegación,Cuatro pestañas y formularios,Prueba manual Android
+EP2,Validaciones desacopladas,Reglas y PlanBViewModel,ReglasTest y errores por campo
+EP2,Animaciones,Crossfade y AnimatedVisibility,Prueba manual Android
+EP2,Persistencia local,Room favoritos,Modo favoritos sin conexión
+EP2,Recursos nativos,Cámara galería ubicación,Prueba manual de permisos y resultados
+EP4,Microservicios Spring Boot,Lugares y planes con H2 en archivo,Pruebas CRUD y ejecución de JAR
+EP4,CRUD remoto,Retrofit y formularios,RepositoryTest y ciclo completo
+EP4,API externa,Open-Meteo clima,WeatherApi y resultado visual
+EP4,80 por ciento de lógica,JaCoCo con umbral 0.80,Reporte y verifyLogicCoverage
+EP4,APK firmado,JKS y signingConfig privado,apksigner y APK
+EP4,GitHub y Trello,Repositorio y planificación,Git real; Trello pendiente de cuenta/tablero
+EP5,Defensa individual,Guía de 15 minutos,Ensayo por el estudiante
+EP5,Modificación en vivo,Ejercicios de regla endpoint y test,Práctica por el estudiante

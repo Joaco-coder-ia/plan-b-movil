@@ -1,0 +1,4 @@
+storeFile=../private/planb-entrega.jks
+storePassword=COMPLETAR_EN_LOCAL
+keyAlias=planb
+keyPassword=COMPLETAR_EN_LOCAL

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="cl.planb.ReglasTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-11-21T13:32:52" hostname="JOAQUÍNG" time="0.204">
+  <properties/>
+  <testcase name="lugarValido" classname="cl.planb.ReglasTest" time="0.044"/>
+  <testcase name="valoracionSoloRealizados" classname="cl.planb.ReglasTest" time="0.117"/>
+  <testcase name="erroresSeparados" classname="cl.planb.ReglasTest" time="0.02"/>
+  <testcase name="climaPorCodigoOPrecipitacion" classname="cl.planb.ReglasTest" time="0.003"/>
+  <testcase name="erroresDelPlan" classname="cl.planb.ReglasTest" time="0.002"/>
+  <testcase name="filtraYOrdena" classname="cl.planb.ReglasTest" time="0.013"/>
+  <testcase name="limites" classname="cl.planb.ReglasTest" time="0.001"/>
+  <testcase name="planValido" classname="cl.planb.ReglasTest" time="0.0"/>
+  <testcase name="validaFechaReal" classname="cl.planb.ReglasTest" time="0.0"/>
+  <testcase name="igualdadDeLimitesIncluyeLugar" classname="cl.planb.ReglasTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

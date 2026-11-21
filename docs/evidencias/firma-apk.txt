@@ -1,0 +1,17 @@
+Verifies
+Verified using v1 scheme (JAR signing): false
+Verified using v2 scheme (APK Signature Scheme v2): true
+Verified using v3 scheme (APK Signature Scheme v3): false
+Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+Verified using v4 scheme (APK Signature Scheme v4): false
+Verified for SourceStamp: false
+Number of signers: 1
+Signer #1 certificate DN: CN=Plan B Academico, OU=Desarrollo Movil, O=Proyecto Academico, L=Santiago, C=CL
+Signer #1 certificate SHA-256 digest: dd6621d7a34b78fd6857b46fbf31ebd04e00394a9eaadae1250ba8724b6a0e42
+Signer #1 certificate SHA-1 digest: dc4d3689ecf89c122d407e0f59c7bed76de3c698
+Signer #1 certificate MD5 digest: 2c6c7e35149c300e20d3c40954c8ac4c
+Signer #1 key algorithm: RSA
+Signer #1 key size (bits): 2048
+Signer #1 public key SHA-256 digest: 03e8acd574f1abdbd883189bd715bbe016557ea51d0b21f80b0bb88be6091cdb
+Signer #1 public key SHA-1 digest: 586718f6044219838147d58717c5187e0448efa5
+Signer #1 public key MD5 digest: 56ee27aa60811034702ed4d1036a1683

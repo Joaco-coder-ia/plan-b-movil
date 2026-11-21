@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Reglas.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">cl.planb.logic</a> &gt; <span class="el_source">Reglas.kt</span></div><h1>Reglas.kt</h1><pre class="source lang-java linenums">package cl.planb.logic
+
+import cl.planb.model.*
+import java.time.LocalDate
+
+object Reglas {
+    fun lugar(l: Lugar): Map&lt;String, String&gt; {
+<span class="fc" id="L8">        val e = mutableMapOf&lt;String, String&gt;()</span>
+<span class="fc bfc" id="L9" title="All 6 branches covered.">        if (l.nombre.trim().length !in 3..80) e[&quot;nombre&quot;] = &quot;Escribe entre 3 y 80 caracteres&quot;</span>
+<span class="fc bfc" id="L10" title="All 6 branches covered.">        if (l.descripcion.trim().length !in 3..300)</span>
+<span class="fc" id="L11">            e[&quot;descripcion&quot;] = &quot;Escribe entre 3 y 300 caracteres&quot;</span>
+<span class="fc bfc" id="L12" title="All 6 branches covered.">        if (l.costo !in 0..1000000) e[&quot;costo&quot;] = &quot;Ingresa un costo entre 0 y 1.000.000&quot;</span>
+<span class="fc bfc" id="L13" title="All 6 branches covered.">        if (l.minutos !in 5..1440) e[&quot;minutos&quot;] = &quot;Ingresa entre 5 y 1440 minutos&quot;</span>
+<span class="pc bpc" id="L14" title="2 of 12 branches missed.">        if (!l.latitud.isFinite() || l.latitud !in -90.0..90.0)</span>
+<span class="fc" id="L15">            e[&quot;latitud&quot;] = &quot;Latitud entre -90 y 90&quot;</span>
+<span class="pc bpc" id="L16" title="2 of 12 branches missed.">        if (!l.longitud.isFinite() || l.longitud !in -180.0..180.0)</span>
+<span class="fc" id="L17">            e[&quot;longitud&quot;] = &quot;Longitud entre -180 y 180&quot;</span>
+<span class="fc" id="L18">        return e</span>
+    }
+
+    fun plan(p: Plan): Map&lt;String, String&gt; {
+<span class="fc" id="L22">        val e = mutableMapOf&lt;String, String&gt;()</span>
+<span class="pc bpc" id="L23" title="1 of 6 branches missed.">        if (p.titulo.trim().length !in 3..80) e[&quot;titulo&quot;] = &quot;Escribe entre 3 y 80 caracteres&quot;</span>
+<span class="pc bpc" id="L24" title="1 of 6 branches missed.">        if (p.lugarNombre.trim().length !in 3..80)</span>
+<span class="fc" id="L25">            e[&quot;lugarNombre&quot;] = &quot;Escribe el lugar (3 a 80 caracteres)&quot;</span>
+<span class="fc" id="L26">        try {</span>
+<span class="fc" id="L27">            LocalDate.parse(p.fecha)</span>
+<span class="fc" id="L28">        } catch (error: Exception) {</span>
+<span class="fc" id="L29">            e[&quot;fecha&quot;] = &quot;Usa una fecha válida: AAAA-MM-DD&quot;</span>
+        }
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        if (p.estado !in listOf(&quot;PENDIENTE&quot;, &quot;REALIZADO&quot;, &quot;CANCELADO&quot;))</span>
+<span class="fc" id="L32">            e[&quot;estado&quot;] = &quot;Estado inválido&quot;</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        if (p.notas.length &gt; 300) e[&quot;notas&quot;] = &quot;Máximo 300 caracteres&quot;</span>
+<span class="pc bpc" id="L34" title="1 of 10 branches missed.">        if (p.valoracion !in 0..5 || (p.estado != &quot;REALIZADO&quot; &amp;&amp; p.valoracion != 0))</span>
+<span class="fc" id="L35">            e[&quot;valoracion&quot;] = &quot;Valora de 0 a 5 solo un plan realizado&quot;</span>
+<span class="fc" id="L36">        return e</span>
+    }
+
+    fun sugerir(
+        lugares: List&lt;Lugar&gt;,
+        minutos: Int,
+        presupuesto: Int,
+        lluvia: Boolean,
+    ): List&lt;Lugar&gt; =
+<span class="fc" id="L45">        lugares</span>
+<span class="fc bfc" id="L46" title="All 8 branches covered.">            .filter { it.minutos &lt;= minutos &amp;&amp; it.costo &lt;= presupuesto &amp;&amp; (!lluvia || it.interior) }</span>
+<span class="fc" id="L47">            .sortedWith(compareBy&lt;Lugar&gt; { it.costo }.thenBy { it.minutos })</span>
+
+    fun clima(c: CurrentWeather): Clima {
+<span class="pc bpc" id="L50" title="1 of 8 branches missed.">        val lluvia = c.precipitation &gt; 0 || c.weather_code in 51..99</span>
+<span class="fc" id="L51">        return Clima(</span>
+<span class="fc" id="L52">            c.temperature_2m,</span>
+<span class="fc" id="L53">            lluvia,</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">            if (lluvia) &quot;Conviene un plan bajo techo&quot;</span>
+<span class="fc" id="L55">            else &quot;Puedes considerar un plan al aire libre&quot;,</span>
+        )
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

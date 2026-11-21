@@ -1,0 +1,5 @@
+Profesor, le comparto PLAN B, una propuesta para organizar actividades según tiempo disponible, presupuesto y clima. Preparé una aplicación Android con gestión de lugares y planes, favoritos locales, dos servicios REST y pruebas automatizadas.
+
+Repositorio: https://github.com/Joaco-coder-ia/plan-b-movil
+
+También tengo el APK firmado y los archivos de entrega. Quisiera confirmar con usted la modalidad individual y el cambio de tema respecto del proyecto anterior. Adjunto el video cuando termine de grabarlo.

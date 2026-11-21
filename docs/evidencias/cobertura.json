@@ -1,0 +1,26 @@
+{
+  "INSTRUCTION": {
+    "missed": 44,
+    "covered": 1117
+  },
+  "BRANCH": {
+    "missed": 9,
+    "covered": 99
+  },
+  "LINE": {
+    "missed": 6,
+    "covered": 115
+  },
+  "COMPLEXITY": {
+    "missed": 11,
+    "covered": 79
+  },
+  "METHOD": {
+    "missed": 2,
+    "covered": 34
+  },
+  "CLASS": {
+    "missed": 0,
+    "covered": 12
+  }
+}

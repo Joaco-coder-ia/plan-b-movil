@@ -1,0 +1,16 @@
+.tools/
+.gradle/
+**/build/
+**/target/
+**/.idea/
+backend/lugares/data/
+backend/planes/data/
+local.properties
+**/local.properties
+*.jks
+*.keystore
+signing.properties
+private/
+*.log
+__pycache__/
+dist/

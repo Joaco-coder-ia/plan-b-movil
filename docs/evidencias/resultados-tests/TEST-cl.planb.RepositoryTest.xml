@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="cl.planb.RepositoryTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-21T13:32:52" hostname="JOAQUÍNG" time="1.065">
+  <properties/>
+  <testcase name="climaSeDeserializaYUsaCoordenadas" classname="cl.planb.RepositoryTest" time="0.949"/>
+  <testcase name="contratosCrudLugares" classname="cl.planb.RepositoryTest" time="0.056"/>
+  <testcase name="falloHttpSePropaga" classname="cl.planb.RepositoryTest" time="0.042"/>
+  <testcase name="contratosCrudPlanes" classname="cl.planb.RepositoryTest" time="0.018"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

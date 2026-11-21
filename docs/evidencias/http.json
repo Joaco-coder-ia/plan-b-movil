@@ -1,0 +1,15 @@
+[
+  {
+    "servicio": "http://localhost:8081/api/lugares",
+    "CRUD": "aprobado"
+  },
+  {
+    "servicio": "http://localhost:8082/api/planes",
+    "CRUD": "aprobado"
+  },
+  {
+    "api": "Open-Meteo",
+    "estado": 200,
+    "hora_proveedor": "2026-11-21T05:00"
+  }
+]
